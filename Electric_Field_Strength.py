@@ -54,6 +54,8 @@
 
 
         B0 = random.choice(generate_photon_magnetic_field_oscillations(25,μ,ε))
-        E0 = self.c * np.sqrt(μ/ε) * B0
-    
+        #print(μ/ε)
+        E0 = (self.c * (np.sqrt((μ/ε)*-1)*-1)) * B0
+        #print(E0)
         return (E0 * np.sin(((k*x)+(k*y)+(k*z)-(ω*t))))
+    
