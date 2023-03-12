@@ -72,11 +72,13 @@ Photons = []
 y_reals = []
 y_imag = []
 for i in range(0,4):
-    mass, charge, spin = ((np.random.randint(10, 400)*NANOMETER), 0, np.random.RandomState().gamma((0),1))
+    
+    mass, charge, spin = ((np.random.randint(10, 400)*NANOMETER), 0, np.random.RandomState().choice(np.array([-1,1])))
     Photons.append(_particle(mass, charge, spin, radiation_type))
 
 for i in Photons:
-    Electric_Field_Generation = i._electric_field(np.random.RandomState().gamma((0),1),np.random.RandomState().gamma((0),1),np.random.RandomState().gamma((0),1),np.linspace(i.h, i.c*i.hbar, 500))
+    print(i)
+    Electric_Field_Generation = i._electric_field(np.random.randint(0,1),np.random.randint(0,1),np.random.randint(0,1),np.linspace(i.h, i.c*i.hbar, 500))
     y_reals.append(np.real(Electric_Field_Generation))
     y_imag.append(np.real(Electric_Field_Generation))
 
@@ -92,4 +94,3 @@ fig.update_layout(scene=dict(xaxis_title='t', yaxis_title='Real part', zaxis_tit
 # Show plot
 pyo.iplot(fig)
 fig.write_html("Electric_Field(Photon).html")
-    
